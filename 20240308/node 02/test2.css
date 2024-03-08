@@ -1,0 +1,26 @@
+.row{
+   display: flex;
+   width: 180px;
+   background: #999;
+   &:nth-child(odd){
+      background: #ccc;
+   }
+   .col{
+      width: 60px;
+      height: 30px;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      user-select: none;
+      &.active{
+         background: lightgreen;
+      }
+      &.active:nth-child(odd){
+         background: #77b0c4;
+         color: #fff;
+      }
+   }
+}

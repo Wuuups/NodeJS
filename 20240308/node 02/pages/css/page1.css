@@ -1,0 +1,32 @@
+body{
+   min-height: 100svh;
+   background-image: url(../images/bg.jpg);
+   background-size: cover;
+   background-position: center center;
+}
+.row{
+   display: flex;
+   width: 180px;
+   background: #999;
+   &:nth-child(odd){
+      background: #ccc;
+   }
+   .col{
+      width: 60px;
+      height: 30px;
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      user-select: none;
+      &.active{
+         background: rgb(49, 93, 174);
+      }
+      &.active:nth-child(odd){
+         background: #cb66af;
+         color: #fff;
+      }
+   }
+}
