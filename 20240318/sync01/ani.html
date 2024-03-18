@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>動畫執行</title>
+   <style>
+      .circle {
+         position: relative;
+         width: 100px;
+         height: 100px;
+         background: #ccc;
+         border-radius: 50%;
+         /* animation-name: ani1;
+         animation-duration: 10s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards; */
+      }
+
+      .active1 {
+         animation-name: ani1;
+         animation-duration: 4s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;
+      }
+
+      .circle2 {
+         background: #737373;
+         /* animation-duration: 5s; */
+      }
+
+      .active2 {
+         animation-name: ani1;
+         animation-duration: 10s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;
+      }
+
+      .circle3 {
+         background: #474747;
+         /* animation-duration: 7s; */
+      }
+
+      .active3 {
+         animation-name: ani1;
+         animation-duration: 7s;
+         animation-iteration-count: 1;
+         animation-fill-mode: forwards;
+      }
+
+      @keyframes ani1 {
+         0% {
+            left: 0;
+         }
+
+         100% {
+            left: calc(100% - 100px);
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="circle circle1 "></div>
+   <div class="circle circle2 "></div>
+   <div class="circle circle3 "></div>
+
+   <script>
+      const circle1 = document.querySelector(".circle1")
+      const circle2 = document.querySelector(".circle2")
+      const circle3 = document.querySelector(".circle3")
+
+         (async () => { 
+            circle1.classList.add("active1")
+            await checkEnd(circle1)
+            circle2.classList.add("active2")
+            await checkEnd(circle2)
+            circle3.classList.add("active3")
+            await checkEnd(circle3)
+         })()
+
+      // circle1.addEventListener("animationend", () => {
+      //    console.log("end")
+      //    circle2.classList.add("active2")
+      // })
+
+      // circle2.addEventListener("animationend", () => {
+      //    console.log("end")
+      //    circle3.classList.add("active3")
+      // })
+
+      function checkEnd(clip) {
+         return new Promise((resolve) => {
+            clip.addEventListener("animationend", () => {
+               console.log("end")
+               resolve()
+            })
+         })
+      }
+   </script>
+</body>
+
+</html>
