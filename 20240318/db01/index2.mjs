@@ -4,7 +4,7 @@ let id = 14
 let data
 (async () => {
    // data = await getData('SELECT * FROM `sort` WHERE `id` = ?', [id])
-   data = await getData(
+   data = await getData( //在匿名函式中調用getData
       'SELECT * FROM `sort` WHERE `id` = ?',
       [id]).then((result) => {
          return result[0] //回傳查詢結果
