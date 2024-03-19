@@ -12,9 +12,6 @@ app.use("/users",usersRouter);
 app.use("/products",productRouters);
 
 
-
-
-
 app.get("/search", (req, res) => {
   res.send("全站搜尋")
 });

@@ -18,6 +18,8 @@ const writeToLog = (req, res, next) => { //路由規則
    next() //執行完後下一個
 }
 
+
+
 const errToLog = (req, res, next) => { //路由規則
    const { ip, path } = req
    const accessDate = moment().format("YYYY-MM-DDTHH:mm:ss")
@@ -38,7 +40,7 @@ const checkLogin = (req, res) => {
    }
 }
 
-app.use(writeToLog)
+app.use(writeToLog) //使用中介軟體
 
 app.get("/", (req, res) => {
    res.send("Home Page")
@@ -52,7 +54,7 @@ app.get("/about", (req, res) => {
    res.send("About")
 })
 
-app.get("/admin", checkLogin, (req, res) => {
+app.get("/admin", checkLogin, (req, res) => { //訪問連結時經由中介軟體
    res.send("Backstage")
 })
 

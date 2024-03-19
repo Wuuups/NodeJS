@@ -8,8 +8,9 @@ const server = http.createServer((request, response) => {
 
    let body = ""
 
-   request.on("data", (chunk) => {
+   request.on("data", (chunk) => { //監聽請求物件的事件
       body += chunk
+      console.log(`chunk: ${chunk}`);
    })
 
    request.on("end", () => {

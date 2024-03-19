@@ -10,7 +10,9 @@ const blackpink = ["Jennie", "Jisoo", "Lisa", "Rose"]
 // })
 // str+="</ul>"
 const template = readFileSync(resolve(__dirname,"template02.html")).toString()
-const result = ejs.render(template,{blackpink})
+const result = ejs.render(template,{blackpink}) 
+// { blackpink }：是一個 JavaScript 對象，它包含了要傳遞到模板中的數據。在這裡，blackpink 是一個陣列，其中包含了需要在模板中使用的數據
+
 // const result = ejs.render(`
 //    <ul>
 //       <% blackpink.forEach(name =>{ %>

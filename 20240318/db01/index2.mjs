@@ -1,4 +1,4 @@
-import connection from "./db.mjs"
+import connection from "./db02.mjs"
 
 let id = 14
 let data
@@ -7,8 +7,8 @@ let data
    data = await getData(
       'SELECT * FROM `sort` WHERE `id` = ?',
       [id]).then((result) => {
-         return result[0]
-      }).catch(error => {
+         return result[0] //回傳查詢結果
+      }).catch(error => { //在 await 後面使用 .then() 和 .catch() 來處理 Promise 的解析值和拒絕原因
          console.log(error)
          return undefined
       })
@@ -18,7 +18,7 @@ let data
    }else{
       //無法取得資料時執行的動作
    }
-})()
+})() //立即執行函式
 
 
 function getData(SQL, ary) {
@@ -30,9 +30,9 @@ function getData(SQL, ary) {
             if (error) {
                reject(error)
             }
-            // console.log(result)
+            console.log(result)
             data = result
-            // console.log(fields)
+            console.log(fields)
          }
       )
    })

@@ -5,6 +5,7 @@ setTimeout((after) => {
    a = 10
    console.log("processing")
    after()
+   console.log(after);
 }, 3000, end)
 
 

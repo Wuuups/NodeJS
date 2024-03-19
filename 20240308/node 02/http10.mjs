@@ -2,17 +2,19 @@ import http from "http";
 import { readFileSync } from "fs";
 import { dirname, resolve, join } from "path";
 
-
+//分流式讀取檔案
 const server = http.createServer((request, response) => {
    const { pathname } = new URL(request.url, "http://localhost");
    let filePath, content;
 
-   if (pathname === "/") {
+
+   //瀏覽器解析HTML檔案並發現這些引用時，它會發送額外的請求以獲取這些資源
+   if (pathname === "/") { //localhost, 根目錄
       response.setHeader("content-type", "text/html;charset=utf-8");
       filePath = resolve(import.meta.dirname, "test2.html");
       const content = readFileSync(filePath);
       response.end(content);
-   } else if (pathname === "/test2.css") {
+   } else if (pathname === "/test2.css") { //
       filePath = resolve(import.meta.dirname, "test2.css");
       content = readFileSync(filePath);
       response.end(content);

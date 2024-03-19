@@ -3,7 +3,7 @@ const fs = require("fs") //導入整個模組
 const file1 = "./測試寫入.txt"
 const content1 = "午餐吃雞腿"
 
-fs.writeFile(file1, content1, function(error){
+fs.writeFile(file1, content1, function(error){ //使用模組中的方法
    if(error){
       console.log("1 寫入失敗")
       return false //中止
