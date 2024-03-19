@@ -1,7 +1,8 @@
 import express from "express"
 import moment from "moment"
-import connection from "../db2.mjs"
+import connection from "../db3.mjs"
 import multer from "multer"
+import { error } from "jquery";
 const router = express.Router();
 const upload = multer()
 
@@ -44,14 +45,35 @@ router.post('/', async (req, res, next) => {
 router.put('/', upload.none(), async (req, res, next) => {
    // res.send("修改指定日期的一筆消費")
    const { title, money, sort, date, id } = req.body
-   let sql = ""
+   let sql = "UPDATE `expense` SET `title` = ?, `sort` = ?, `money` = ? ,`date` = ?"
    let dataAry = [title, sort, money, date, id]
-   let [result] = await connection.execute(sql, dataAry)
+   let [result] = await connection.execute(sql, dataAry).then((result) => {
+      if(result[0].changedRows === 1){
+         return true
+      }else{
+         return false
+      }
+   }).catch(error => {
+      return false
+   })
+   console.log(result);
+   res.json({result})
    res.redirect(`/expe/d/${date}`)
 })
 
-router.delete('/', (req, res, next) => {
-   res.send("刪除指定日期的一筆消費")
+router.delete('/',upload.none(), async (req, res, next) => {
+   // res.send("刪除指定日期的一筆消費")
+   const {id} = req.body
+   let sql ="DELETE FROM expense WHERE `expense`.`id` = ?" 
+   const dataAry = [id]
+   const [results] = await connection.execute(sql, dataAry).than(results=>{
+      if(result[0].affectedRows > 0){
+         return true
+      }else{
+         return false
+      }
+   }).catch(error => false)
+   res.json({result})
 })
 
 export default router
