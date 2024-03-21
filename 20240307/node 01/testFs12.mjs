@@ -3,7 +3,7 @@ import { mkdir, readdir, rmdir, rm } from "fs"
 
 if (process.argv[2] === "mkdir") {
    // mkdir("./html", (error)=>{
-   mkdir("./a/b/c", { recursive: true }, (error) => { //遞迴方式建立資料夾
+   mkdir("./a/b/c", { recursive: true }, (error) => { //遞迴方式建立資料夾, 遞迴式就是一層一層的資料夾
       if (error) {
          console.log("建立資料夾失敗")
          return false
@@ -11,7 +11,7 @@ if (process.argv[2] === "mkdir") {
       console.log("建立資料夾成功")
    })
 } else if (process.argv[2] === "readdir") {
-   readdir("./video1", (error, files) => {
+   readdir("./video1", (error, files) => { //使用陣列儲存資料
       if (error) {
          console.log("讀取資料夾失敗")
          return false

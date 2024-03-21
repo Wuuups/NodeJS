@@ -3,14 +3,14 @@ import { parse } from "url"
 
 const server = http.createServer((request, response) => {
 
-   const res = parse(request.url, true)
+   const res = parse(request.url, true) //將請求的URL進行解析﹐設置true為解析為一個物件﹐以方便後續處理﹐false則是解析為字符串
 
 
    //傳統方法
    //由URL模組的parse方法取得網址參數
    //有更好的方法在http05
 
-   if (res.pathname != "/favicon.ico") {
+   if (res.pathname != "/favicon.ico") { //不要顯示/favicon.ico
       console.log(res);
       console.log(`res.name = ${res.query.name}`);
       console.log(`res.password = ${res.query.password}`);

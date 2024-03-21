@@ -12,13 +12,12 @@ const server = http.createServer((request, response) => {
    let root = "pages"
    if(process.argv[2] === "p"){
       root = "public"
-
    }
 
-   let filePath = resolve(import.meta.dirname, root, pathname.slice(1));
+   let filePath = resolve(import.meta.dirname, root, pathname.slice(1)); 
+   //root: 在 pathname前面=>上一層目錄的修改, 
    let content
-
-
+   console.log(import.meta.dirname); //C:\Users\user\Desktop\NodeJS\20240308\node 02
 
    try {
       content = readFileSync(filePath);
@@ -28,7 +27,6 @@ const server = http.createServer((request, response) => {
       response.statusCode = 500
       response.end("<h1>讀不到檔案</h1>");
    }
-
 });
 
 server.listen(9000, () => {

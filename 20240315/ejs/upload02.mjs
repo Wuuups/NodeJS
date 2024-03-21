@@ -14,11 +14,11 @@ app.use("/bs", express.static(resolve(__dirname, "node_modules/bootstrap/dist"))
 app.use("/jq", express.static(resolve(__dirname, "node_modules/jquery/dist")))
 app.use(express.static(resolve(__dirname, "public")))
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
+const storage = multer.diskStorage({ // Multer 中的一個方法，用於配置 Multer 如何處理文件的存儲
+    destination: function(req, file, cb){ // 用於指定文件的存儲目錄
         cb(null, resolve(__dirname, "public", "uploads"))
     },
-    filename: function(req, file, cb){
+    filename: function(req, file, cb){ // 用於指定文件的新名稱
         // timestamp 做為新檔名
         // let timestamp = Date.now();
         // let newName = `${timestamp}${extname(file.originalname)}`
@@ -34,13 +34,13 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({storage})
+const upload = multer({storage}) //將建立的 storage 對象作為配置參數傳遞給它
 
 app.get("/", (req, res) => {
     res.send("首頁")
 })
 
-app.get("/form", (req, res) => {
+app.get("/form1", (req, res) => {
     res.render("form01")
 })
 

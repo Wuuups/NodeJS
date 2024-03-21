@@ -3,10 +3,10 @@ import { resolve } from "path"
 const app = experss()
 const __dirname = import.meta.dirname
 
-let user
-
-app.set("view engine", "ejs")
-app.set("views", resolve(__dirname, "views"))
+app.set("view engine", "ejs") // 告訴 Express 使用 EJS 作為模板引擎來渲染視圖
+app.set("views", resolve(__dirname, "views")) 
+// const pathtest = resolve(__dirname, "views")
+// console.log(pathtest);
 
 //所有規則之前，樣板引擎之後
 app.use("/bs", experss.static(resolve(__dirname,"node_modules/bootstrap/dist")))
@@ -20,6 +20,7 @@ app.get("/test01", (req, res) => {
    const name = "sam"
    const str = "yyoooo"
    res.render("test01", { name, str })
+   console.log(req.url);
 })
 
 app.get("/test02", (req, res) => {
@@ -27,8 +28,8 @@ app.get("/test02", (req, res) => {
    res.render("test02", { blackpink })
 })
 
+let user
 app.get("/test03", (req, res) => {
-   
    res.render("test03", {user})
 })
 

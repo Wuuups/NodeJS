@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ejs04.mjs",
+    "test": "nodemon ejs01.mjs",
     "upload01": "nodemon upload01.mjs",
     "upload02": "nodemon upload02.mjs"
   },

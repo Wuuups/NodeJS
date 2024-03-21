@@ -25,7 +25,9 @@ let t3 = () => {
    })
 }
 
-(async function () {
+//async 關鍵字用於定義一個函式，使其返回一個 Promise。當你在函式前面加上 async 關鍵字時，該函式內部的任何非同步操作都會返回一個 Promise 物件。
+
+(async function () { //執行的函數有回傳 reslove 或 reject 才會往下一行進行
    await t1()
    await t2()
    await t3()
@@ -38,7 +40,9 @@ async function doThing() {
 }
 
 // doThing()
+
+
 //3 -> 1 -> 2
 
 
-(async () => {})()
+(async () => {})() //寫法

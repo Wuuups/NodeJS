@@ -8,7 +8,7 @@ const str = "yyoooo"
 // console(str+ ", "+name)
 // console.log(`${str}, ${name}`)
 // const template = "<%=str%>, <%=name%>"
-const template = readFileSync(resolve(__dirname, "template01.html")).toString()
+const template = readFileSync(resolve(__dirname, "template01.html")).toString() //將路徑中的html中的內容轉換為字串
 
 const result = ejs.render(
    template,

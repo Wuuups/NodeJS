@@ -17,7 +17,7 @@ app.get("/login", (req, res) => {
    //espress中的方法
    res.send("Login page")
    console.log(`req.path = ${req.path}`);
-   console.log(req.query);
+   console.log(req.query); //獲取 URL 查詢參數的屬性
    console.log(`name = ${req.query.name}`);
    console.log(`pwd = ${req.query.pwd}`);
    console.log(`req.ip = ${req.ip}`);

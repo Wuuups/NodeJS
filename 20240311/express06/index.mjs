@@ -1,11 +1,11 @@
-// import express from "express"
-// import { resolve } from "path"
-// import jsonData from "./singers.json" assert {type: "json"} //物件
-// const { singers } = jsonData
+import express from "express"
+import { resolve } from "path"
+import jsonData from "./singers.json" assert {type: "json"} //物件
+const { singers } = jsonData
 
 
 
-console.log(singers)
+// console.log(singers)
 
 const app = express()
 
@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 //http://localhost:3000/singer/3.html
 
 app.get("/singer/:id.html", (req, res) => {
-   const { id } = req.params
+   const { id } = req.params //抓取冒號(:)定義路由的參數，結果為字串
 
-   let result = singers.find((singer) => {
-      if (singer.id === parseInt(id)) {
+   let result = singers.find((singer) => { //singer為自訂義，遍歷陣列中的元素
+      if (singer.id === parseInt(id)) { //轉換為整數
          return true
       }
    })
@@ -59,10 +59,10 @@ app.get("/api/singer/:id", (req, res) => {
 
    let result = singers.find((singer) => {
       if (singer.id === parseInt(id)) {
-         return true
+         return true //停止遍歷並返回當前的元素
       }
    })
-   if (result) {
+   if (result) { //如果 singers.find 找到了符合條件的歌手，則 result 將是一個非空值
       res.status(200).json(result)
    } else {
       res.status(404).json({ err: "not found" })

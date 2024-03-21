@@ -1,4 +1,4 @@
-import connection from "./db2.mjs"
+import connection from "./db02.mjs"
 
 let sql = 'SELECT * FROM `sort` WHERE `id` = ?'
 let ary = [2]

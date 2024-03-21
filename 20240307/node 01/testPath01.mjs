@@ -1,9 +1,9 @@
 import {parse, resolve, sep, basename, dirname, extname, join} from "path"
 import {fileURLToPath} from "url"
 
-// console.log(resolve("aaa.txt"));
-// console.log(sep);
-// console.log(import.meta.url);
+// console.log(resolve("aaa.txt")); //返回一個絕對路徑字符串, 並不會檢查路徑是否存在
+// console.log(sep); //表示各個系統上的分隔符長啥樣
+// console.log(import.meta); //import用於導入其他模組，而import.meta用於獲取當前模組的元資訊，包含這段代碼的文件本身
 // console.log(fileURLToPath(import.meta.url));
 // console.log(parse(import.meta.url));
 // console.log(import.meta.dirname);
@@ -31,5 +31,6 @@ import {fileURLToPath} from "url"
 // console.log(resolve("測試寫入2.txt"));。
 console.log(resolve(import.meta.dirname, "測試寫入2.txt"));
 console.log(join(import.meta.dirname, "測試寫入2.txt"));
+// console.log(import.meta.dirname);
 
 

@@ -18,5 +18,5 @@ user = {
 // }
 
 const template = readFileSync(resolve(__dirname, "template03.html")).toString();
-const result = ejs.render(template,{user})
+const result = ejs.render(template,{user:user})
 console.log(result);
