@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>todo list</title>
+   <style>
+      #myInput {
+         width: 100%;
+         font-size: 20px;
+         box-sizing: border-box;
+      }
+
+      .todo {
+         font-size: 16px;
+         user-select: none;
+         margin-block: 4px;
+      }
+
+      .deleted {}
+   </style>
+</head>
+
+<body>
+   <input type="text" id="myInput" autofocus>
+   <div class="todolist">
+      <!-- <div class="todo">
+         <input type="checkbox" id="todo1">
+         <label for="todo1">我要喝可樂</label>
+      </div> -->
+   </div>
+   <script>
+      let todoAry
+      const todolist = document.querySelector(".todolist")
+
+      // console.log(todoAry);
+
+      const setTodo = tempObj => {
+         //產生實體DOM
+         let node = document.createElement("div")
+         node.innerHTML =
+            `<div class="todo">
+            <input type="checkbox" id="todo${tempObj.t}">
+            <label for="todo${tempObj.t}">${tempObj.text}</label>
+            </div>`
+         todolist.append(node.children[0])
+      }
+
+      if (localStorage.getItem("todo")) {
+         todoAry = JSON.parse(localStorage.getItem("todo"))
+         todoAry.forEach(dodo => {
+            setTodo(dodo)
+         })
+      } else {
+         todoAry = []
+      }
+
+      myInput.addEventListener("keyup", e => {
+         console.log(e.key);
+         if (e.ctrlKey === true && e.key === "Enter") {
+            let t = new Date().getTime()
+            let tempObj = {}
+            tempObj.t = t
+            tempObj.text = e.currentTarget.value
+            console.log(tempObj)
+            todoAry.push(tempObj)
+            localStorage.setItem("todo", JSON.stringify(todoAry))
+            setTodo(tempObj)
+            myInput.value = ""
+         }
+      })
+
+      todolist.addEventListener("change", e => {
+         // console.log(e.target)
+         e.target.disabled = true
+         let t = parseInt(e.target.id.slice(4), 10)
+         // console.log(t)
+         todoAry = todoAry.filter(dodo => dodo.t !== t)
+         localStorage.setItem("todo", JSON.stringify(todoAry))
+         let element = e.target.closest(".todo")
+         // element.remove()
+         element.classList.add("deleted")
+
+         const animation = element.animate([
+            {
+               transform: `translateY(0)`,
+               opacity: 1
+            },
+            {
+               transform: `translateY(${window.innerHeight - 50 - element.getBoundingClientRect().top}px)`,
+               opacity: 0.1
+            }
+         ], {
+            duration: 500,
+            fill: "forwards",
+            easing: "ease-in-out"
+         })
+         animation.onfinish = () => {
+            element.remove()
+         }
+      })
+   </script>
+</body>
+
+</html>

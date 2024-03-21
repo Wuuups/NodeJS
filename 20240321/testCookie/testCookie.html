@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>cookie基本測試</title>
+</head>
+
+<body>
+
+   <script>
+      const getCookie = (name) => {
+         const nameEQ = `${name}=`
+         const ca = document.cookie.split(';').map(cookie => cookie.trim())
+         const cookie = ca.find(cookie => cookie.startsWith(nameEQ))
+         return cookie ? cookie.substring(nameEQ.length) : null
+      }
+
+      document.cookie = "username=Wuuups"
+      let today = new Date()
+      today.setDate(today.getDate() + 30)
+      let notToday = new Date()
+      notToday.setDate(notToday.getDate() - 30)
+      let expires = `expires=${today.toUTCString()}`
+      document.cookie = expires
+      let invaildExpires =`expires=${notToday.toUTCString()}`
+      document.cookie = invaildExpires
+
+      //  console.log(today.toUTCString())
+
+      document.cookie = `password=12345;${notToday.toUTCString()}`
+      document.cookie = `head=https://randomuser.me/api/portraits/men/16.jpg;${today.toUTCString()}`
+
+      // console.log(document.cookie)
+      console.log(getCookie("username"))
+      console.log(getCookie("password"))
+      console.log(getCookie("head"))
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <title>抽你媽</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+   <!-- Bootstrap CSS v5.2.1 -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+   <style>
+      .container {
+         height: 100svh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+
+      .box {
+         height: 300px;
+         cursor: pointer;
+
+         & img {
+            height: 100%
+         }
+      }
+
+      .unbox {
+         height: 300px;
+
+         & img {
+            height: 100%;
+         }
+      }
+
+      .hidden {
+         display: none;
+      }
+
+      .bold {
+         color: firebrick;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <div class="package">
+         <h1 class="info text-center"></h1>
+         <div class="d-flex justify-content-center">
+            <div class="box hidden">
+               <img src="https://littleblessings.com.au/wp-content/uploads/2019/09/Gift-Box.jpg" alt="">
+            </div>
+            <div class="unbox hidden">
+               <img
+                  src="https://st4.depositphotos.com/2495409/24488/i/450/depositphotos_244880124-stock-photo-opened-gift-box-illustration-isolated.jpg"
+                  alt="">
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      const box = document.querySelector(".box")
+      const unbox = document.querySelector(".unbox")
+      const info = document.querySelector(".info")
+
+
+
+      const getCookie = (name) => {
+         const nameEQ = `${name}=`
+         const ca = document.cookie.split(';').map(cookie => cookie.trim())
+         const cookie = ca.find(cookie => cookie.startsWith(nameEQ))
+         return cookie ? cookie.substring(nameEQ.length) : null
+      }
+
+      const setCookie = (key, value, day = 1) => {
+         let today = new Date()
+         today.setDate(today.getDate() + day)
+         let expires = `expires=${today.toUTCString()}`
+         document.cookie = `${key}=${value};${expires}`
+      }
+
+      const delCookie = (key, vaule, day = 1) => {
+         let today = new Date()
+         today.setDate(today.getDate() - 30)
+         let expires = `expires=${today.toUTCString()}`
+         document.cookie = `${key}=;${expires}`
+      }
+
+      if (!getCookie("gifted")) {
+         box.classList.remove("hidden")
+         info.innerHTML = "點擊以抽獎"
+      } else {
+         unbox.classList.remove("hidden")
+         info.innerHTML = `以抽獎，得到第<span class="bold">${getCookie("gifted")}</span>獎`
+      }
+      box.addEventListener("click", e => {
+         const randomNum = Math.floor(Math.random() * 20) + 1
+         setCookie("gifted", randomNum)
+         info.innerHTML =`恭喜中獎，得到第<span class="bold">${getCookie("gifted")}</span>獎`
+         unbox.classList.remove("hidden")
+         box.classList.add("hidden")
+      })
+   </script>
+</body>
+
+</html>

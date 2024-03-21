@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <script>
+
+      //window可省略
+      const storage = window.localStorage
+      // window.sessionStorage
+      storage.setItem("username", "Wuuusp")
+      storage.setItem("password", "12345")
+      storage.setItem("account", "Wuuups")
+
+      // storage.removeItem("password")
+      // storage.clear()
+
+      console.log(storage.getItem("username"))
+      console.log(storage.getItem("password"))
+      console.log(storage.getItem("account"))
+
+      console.log(storage.storage.key(0))
+      console.log(storage.storage.key(1))
+      console.log(storage.storage.key(2))
+
+      console.log(storage.length);
+
+      for(let i=1;i<=storage.length;i++){
+         console.log(`${storage.key[i]} = ${storage.getItem(storage.key(i))}`)
+      }
+         
+      for(let [key, value] of Object.entries(storage)){
+         console.log(`${key}=${value}`);
+      }
+
+   </script>
+</body>
+</html>
