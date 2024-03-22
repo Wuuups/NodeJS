@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <video src="" id="player" width="100%"></video>
+   <button type="button">START</button>
+
+   <script>
+      const player = document.querySelector("#player")
+      const btnStart = document.querySelector("button")
+      const playList = [
+         "./videos/video1.mp4",
+         "./videos/video2.mp4",
+         "./videos/video3.mp4",
+         "./videos/video4.mp4"
+      ]
+
+      const postUrl = "./images/cat.jpg"
+      let playNum = 0
+
+      player.setAttribute("poster", postUrl)
+
+      player.addEventListener("ended", e => {
+         playNum++
+         player.src = playList[playNum]
+         player.play()
+         if(playNum>playList.length){
+            playNum = 0
+            //or return false
+         }
+      })
+
+      btnStart.addEventListener("click", e => {
+         e.currentTarget.disabled = true
+         player.src = playList[playNum]
+         player.play()
+      })
+   </script>
+</body>
+</html>

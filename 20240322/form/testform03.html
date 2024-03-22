@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>custom verify message</title>
+
+</head>
+
+<body>
+   <form action="" autocapitalize="on" onsubmit="return false">
+
+      <label for="myName">Name: </label>
+      <input type="text" name="myName" id="myName" autocapitalize="off" autofocus placeholder="enter your name" required
+         pattern=".{5,}"><br>
+
+      <label for="myEmail">Email</label>
+      <input type="email" name="myEmail" id="myEmail" autocomplete="email" required><br>
+
+      <label for="myPassword">Password</label>
+      <input type="password" name="myPassword" id="myPassword" required pattern=".{6,}"><br>
+
+      <label for="myPassword2">re-type Password</label>
+      <input type="password" name="myPassword2" id="myPassword2" required pattern=".{6,}"><br>
+
+      <label for="myTel">Phone</label>
+      <input type="tel" name="myTel" id="myTel" required><br><br>
+
+      <input type="submit" value="submit">
+   </form>
+
+
+
+   <script>
+      const inputs = document.querySelectorAll("input")
+
+      const myVaildate = e => {
+         // console.log(e.target);
+         // console.log(e.target.vaildity);
+         // console.log("-----");
+         let v = e.target.validity
+         // true === v.valueMissing // 請填寫欄位
+         // true === v.patternMismatch // 請符合要求的格式
+         // true === v.typeMismatch //格式不正確
+         let msg = ""
+         switch (true) {
+            case v.valueMissing:
+               msg = "幹"
+               break;
+            case v.patternMismatch:
+               msg = "你"
+               break;
+            case v.typeMismatch:
+               msg = "娘"
+               break;
+         }
+         e.target.setCustomValidity(msg)
+      }
+
+      inputs.forEach(input => {
+         input.addEventListener("blur", myVaildate)
+      })
+
+   </script>
+</body>
+
+</html>

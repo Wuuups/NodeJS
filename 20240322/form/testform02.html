@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>form verify</title>
+   <style>
+      .body{
+         height: 100vh;
+      }
+   </style>
+</head>
+
+<body>
+   <form action="" autocapitalize="on" onsubmit="return false">
+
+      <label for="myName">Name: </label>
+      <input type="text" name="myName" id="myName" autocapitalize="off" autofocus placeholder="enter your name" required
+         pattern=".{5,}"><br>
+
+      <label for="myEmail">Email</label>
+      <input type="email" name="myEmail" id="myEmail" autocomplete="email" required><br>
+
+      <label for="myPassword">Password</label>
+      <input type="password" name="myPassword" id="myPassword" required pattern=".{6,}"><br>
+
+      <label for="myPassword2">re-type Password</label>
+      <input type="password" name="myPassword2" id="myPassword2" required pattern=".{6,}"><br>
+
+      <label for="myTel">Phone</label>
+      <!-- <input type="tel" name="myTel" id="myTel" required pattern="^09\d{2}-d{3}-d{3}$"><br><br> -->
+      <input type="tel" name="myTel" id="myTel" required><br><br>
+
+      <input type="submit" value="submit">
+   </form>
+
+
+
+   <script>
+      const form1 = document.querySelector("form")
+
+      form1.addEventListener("submit", e => {
+         e.preventDefault()//擋下送出            
+
+         // if () {
+         //    return false
+         // }
+         // e.currentTarget.submit()
+         //最後送出表單要執行submit()
+
+      })
+      myPassword2.addEventListener("blur", e => {
+         if (myPassword2.value == myPassword.value) {
+            console.log("密碼一致");
+            myPassword2.setCustomVaildity("")
+         } else {
+            console.log("密碼不一致");
+            myPassword2.setCustomVaildity("bruh")
+         }
+      })
+
+   </script>
+</body>
+
+</html>

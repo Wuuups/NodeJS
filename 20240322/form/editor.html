@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      mark {
+         color: #fff;
+         background: #fff;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="editor" contenteditable="">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia nemo asperiores illum deleniti repudiandae,
+      accusantium itaque ut placeat laboriosam, perspiciatis porro odit iste odio doloribus voluptatum dignissimos
+      assumenda veniam! In.
+      Nulla alias eaque placeat ratione ut commodi optio sit vero maiores ab quaerat quae neque iure deleniti earum
+      aliquam architecto voluptates minima omnis qui adipisci, aperiam saepe? Nulla, sapiente eaque?
+      Ipsa quibusdam consectetur exercitationem, eos vero modi autem facere dolore, tempora harum quod accusamus
+      eveniet. Cupiditate minima ad consectetur commodi necessitatibus error rerum? Facere id atque praesentium, laborum
+      dolor est.
+      Delectus ut aspernatur accusamus dolor et voluptates amet quia eaque sint dignissimos tempore architecto doloribus
+      cupiditate eum quae excepturi natus hic quis sapiente, vero ratione aut. Odit commodi nemo animi!
+      Aut similique explicabo nemo quibusdam nulla animi nihil sint illo atque? Labore pariatur perferendis doloremque
+      harum! Consequatur atque, est ut, porro reprehenderit ipsa accusamus eligendi, autem tempora sunt iusto beatae.
+      Optio dolorum blanditiis, quibusdam obcaecati dolor ratione beatae aut! Nostrum tempora consequatur similique
+      animi tempore ab a sunt illum atque molestiae, accusamus eos iure nemo natus. Tempore, rerum. Neque, dicta.
+      Ut perferendis, alias numquam facere sint, unde tempore quis deserunt, necessitatibus delectus sunt? Accusamus
+      harum neque perferendis eaque, hic veniam voluptatibus modi, commodi laudantium fugiat, voluptates corporis?
+      Harum, ab exercitationem.
+      Magnam, repellendus sint? Magnam reprehenderit velit ut incidunt est, laudantium ipsum possimus aperiam, et
+      distinctio saepe dignissimos molestiae esse. Corporis quae quaerat maxime ducimus hic ipsam cum quia alias
+      explicabo.
+      Doloremque, delectus. Sequi magni obcaecati aliquam in nesciunt ducimus at debitis cum, laboriosam ut dignissimos
+      reiciendis corrupti autem ex. Asperiores ut delectus dolor assumenda iusto? Nulla earum explicabo dolorum
+      nesciunt.
+      Optio sed, quia porro enim nulla dolorum, impedit neque voluptatibus reprehenderit amet beatae non, aliquid veniam
+      magnam molestias. Accusamus harum voluptate eum provident iusto reiciendis architecto id consequatur aliquam!
+      Provident.
+   </div>
+
+
+   <script>
+      const editor = document.querySelector(".editor")
+
+      editor.addEventListener("mouseup", e => {
+         const selection = window.getSelection()
+         const selectedText = selection.toString().trim()
+
+         console.log(selection)
+
+         if (selectedText.length <= 0) {
+            return false
+         }
+
+         const range = selection.getRangeAt(0)
+         const mark = document.createElement("mark")
+         mark.textContent = selectedText
+
+         range.deleteContents()
+         range.insertNode(mark)
+
+
+      })
+   </script>
+</body>
+
+</html>

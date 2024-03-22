@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>666</title>
+   <style>
+      img {
+         height: 300px;
+         width: 300px;
+
+         & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="img" src="" alt="">
+   <input type="file" name="myFiles" id="" accept="image/*">
+
+
+   <script>
+      document.querySelector("[name=myFiles]").addEventListener("change", e => {
+         let file = e.target.files[0]
+         // console.log(file);
+
+         let reader = new FileReader()
+         reader.addEventListener("load", e => {
+            let image = new Image()
+            image.src = e.target.result
+            console.log(image)
+            let img = document.querySelector(".img")
+            img.innerHTML = ""
+            img.append(image)
+         })
+         reader.readAsDataURL(file)
+      })
+
+
+   </script>
+</body>
+
+</html>

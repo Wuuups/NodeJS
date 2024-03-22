@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .sub {
+         font-size: 24px;
+         font-weight: bold;
+         color: #ccc;
+
+         .active {
+            color: rgb(97, 224, 24);
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <video id="player" width="100%"></video>
+   <div class="btns">
+      <button type="button" id="video1">Video1</button>
+      <button type="button" id="video2">Video2</button>
+      <button type="button" id="video3">Video3</button>
+      <button type="button" id="video4">Video4</button>
+      <button type="button" id="control">Control</button>
+   </div>
+   <div class="sub">
+      <span class="word">我</span>
+      <span class="word">要</span>
+      <span class="word">喝</span>
+      <span class="word">可</span>
+      <span class="word">樂</span>
+   </div>
+
+   <script>
+      const player = document.querySelector("#player")
+      const btnGroup = document.querySelector(".btns")
+      const words = document.querySelectorAll(".sub .word")
+      const postUrl = "./images/cat.jpg"
+      const btns = {
+         v1: document.querySelector("#video1"),
+         v2: document.querySelector("#video2"),
+         v3: document.querySelector("#video3"),
+         v4: document.querySelector("#video4"),
+         control: document.querySelector("#control")
+      }
+
+      player.setAttribute("poster", postUrl)
+
+      const playerListener = e => {
+         console.log(`${e.type} duration: ${player.duration} currentTime: ${player.currentTime} volume${player.volume} muted: ${player.muted} paused: ${player.paused}
+         `)
+         if (player.currentTime > 2.1 && player.currentTime < 2.4) {
+            words[0].classList.add("active")
+         }
+         if (player.currentTime > 2.4 && player.currentTime < 2.7) {
+            words[1].classList.add("active")
+         } 
+         if (player.currentTime > 3.0 && player.currentTime < 3.3) {
+            words[2].classList.add("active")
+         } 
+         if (player.currentTime > 3.3 && player.currentTime < 3.6) {
+            words[3].classList.add("active")
+         } 
+         if (player.currentTime > 3.6 && player.currentTime < 3.9) {
+            words[4].classList.add("active")
+         }
+      }
+
+      player.addEventListener("ended", playerListener)
+      player.addEventListener("timeupdate", playerListener)
+      player.addEventListener("loadedmetadata", playerListener)
+      //
+      btnGroup.addEventListener("click", e => {
+         // console.log(e.target)
+         switch (e.target) {
+            case btns.v1:
+               player.src = "./videos/video1.mp4"
+               player.play()
+               break;
+            case btns.v2:
+               player.src = "./videos/video2.mp4"
+               player.play()
+               break;
+            case btns.v3:
+               player.src = "./videos/video3.mp4"
+               player.play()
+               break;
+            case btns.v4:
+               player.src = "./videos/video4.mp4"
+               player.play()
+               break;
+            case btns.control:
+               player.paused ? player.play() : player.pause()
+               break;
+         }
+      })
+
+
+   </script>
+</body>
+
+</html>

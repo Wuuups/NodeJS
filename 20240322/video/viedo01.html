@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      video {
+         width: 100%;
+      }
+   </style>
+</head>
+
+<body>
+   <!-- <video src="./videos/bg.mp4" autoplay muted loop controls></video> -->
+
+   <video 
+      autoplay muted loop controls
+      controlslist="nodownload nofullscreen"
+      disablepictureinpicture
+      poster="./images/cat.jpg"
+      preload="metadata"
+   >
+      <source src="./videos/video5.mp4">
+      <source src="./videos/video1.mp4">
+      <a href="./videos/video1.mp4"></a>
+      <p>不支援影片撥放</p>
+   </video>
+</body>
+
+</html>
