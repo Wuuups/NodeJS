@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <audio src="" id="player" controls></audio>
+   <button type="button">Start</button>
+   <script>
+      const player = document.querySelector("#player")
+      const btnStart = document.querySelector("button")
+      const playList = [
+         "./sounds/list1.mp3",
+         "./sounds/list2.mp3",
+         "./sounds/list3.mp3",
+      ]
+
+      let playNum = 0
+
+      player.addEventListener("ended", e => {
+         playNum++
+         if (playNum >= playList.length) {
+            btnStart.disabled = false
+            playNum = 0
+            return false
+         }
+         player.src = playList[playNum]
+         player.play()
+      })
+
+      btnStart.addEventListener("click", e => {
+         e.currentTarget.disabled = true
+         player.src = playList[playNum]
+         player.play()
+      })
+   </script>
+</body>
+
+</html>

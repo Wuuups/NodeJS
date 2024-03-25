@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      let soundObj = {
+         shoot: "./sounds/shoot.mp3",
+         explotion: "./sounds/explo.mp3"
+      }
+
+      window.addEventListener("keyup", e => {
+         if (e.key === " ") {
+            playsound("shoot")
+         } else if(e.key === "Enter"){
+            playsound("explotion")
+         }
+      })
+
+      function playsound(key) {
+         let shoot = new Audio(soundObj[key])
+         shoot.addEventListener("ended", e => {
+            e.currentTarget = null
+         })
+         shoot.play()
+      }
+   </script>
+</body>
+
+</html>

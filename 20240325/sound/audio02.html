@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <audio src="" id="player" controls></audio>
+   <div class="btns">
+      <button type="button" id="audio1">music1</button>
+      <button type="button" id="audio2">music2</button>
+      <button type="button" id="audio3">music3</button>
+      <button type="button" id="audio4">music4</button>
+      <button type="button" id="control">控制</button>
+   </div>
+
+   <script>
+      const divBtns = document.querySelector(".btns")
+      const player = document.querySelector("#player")
+      const btns = {
+         v1: document.querySelector("#audio1"),
+         v2: document.querySelector("#audio2"),
+         v3: document.querySelector("#audio3"),
+         v4: document.querySelector("#audio4"),
+         ctrl: document.querySelector("#control"),
+      }
+
+      divBtns.addEventListener("click", e => {
+         console.log(e.target);
+         switch (e.target) {
+            case btns.v1:
+               player.src = "./sounds/music1.mp3"
+               player.play()
+               break
+            case btns.v2:
+               player.src = "./sounds/music2.mp3"
+               player.play()
+               break
+            case btns.v3:
+               player.src = "./sounds/music3.mp3"
+               player.play()
+               break
+            case btns.v4:
+               player.src = "./sounds/music4.mp3"
+               player.play()
+               break
+            case btns.ctrl:
+               player.paused ? player.play() : player.pause()
+               break
+
+         }
+      })
+
+
+   </script>
+</body>
+
+</html>
